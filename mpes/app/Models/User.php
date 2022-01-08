@@ -18,8 +18,6 @@ class User extends Authenticatable
         'real_email',
         'phone',
         'active',
-        // 'user_id',
-        // 'product_id'
     ];
 
     public function comments()

@@ -29,9 +29,12 @@ class CommentController extends Controller
 
          if($comment->save())
          return $comment;
-
     }
 
-    
+
+    public function ProductComments($Product_id)
+    {
+       return comment::where('Product_id','like','%'.$Product_id.'%')->get();
+    }
 
 }

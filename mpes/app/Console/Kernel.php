@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Carbon;
+use App\Models\product;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +15,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\expiration::class,
     ];
 
     /**
@@ -24,7 +26,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+
+         $schedule->call(function ()
+          {
+           $currentDate = \Carbon\Carbon::now();
+           $products = product::all();
+           foreach ($products as $product)
+           {
+            $dateproduct = new \Carbon\Carbon($product->expiry_date);
+               if($dateproduct < $currentDate)
+               {
+                   $product->delete();
+               }
+           }
+               })->everyMinute();
     }
 
     /**

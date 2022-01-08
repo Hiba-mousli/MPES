@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 use Illuminate\Routing\Routes;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -15,16 +16,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[UserController::class, 'Register']);
 Route::post('/login',[UserController::class, 'Login']);
 Route::get('/logout/{id}',[UserController::class, 'Logout']);
-Route::post('/edit_user/{id}',[UserController::class, 'EditUser']);//new
+Route::post('/edit_user/{id}',[UserController::class, 'EditUser']);
 
 Route::post('/update/{id}',[ProductController::class, 'Update']);
-Route::post('/addproduct',[ProductController::class, 'Add']);
-Route::post('/addproduct2',[ProductController::class, 'Add']); // ghram
-Route::get('/show details/{id}',[ProductController::class, 'ShowDetails']); //new
-Route::get('/pagination',[ProductController::class, 'Pagination']);//new*2
+Route::post('/addproduct',[ProductController::class, 'addProduct']);
+Route::get('/show details/{id}',[ProductController::class, 'ShowDetails']);
+Route::get('/pagination',[ProductController::class, 'Pagination']);
 Route::get('/user_product/{user_id}',[ProductController::class, 'UserProduct']);
 
-Route::post('/addcomment',[CommentController::class, 'AddComment']);//new
+Route::get('/getProducts', [ProductController::class, 'getProducts']);
+Route::get('/searchByName/{product_name}', [ProductController::class, 'searchByName']);
+Route::get('/searchByExpiry_date/{expiry_date}', [ProductController::class, 'searchByExpiry_date']);
+Route::get('/sortingByType/{type}', [ProductController::class, 'sortingByType']);
+Route::get('/showDetails/{id}', [ProductController::class, 'show']);//////dosent exisit
+Route::post('/addLike/{id}', [ProductController::class, 'addLike']);
+Route::get('/sortingByCategory/{category_id}', [ProductController::class, 'sortingByCategory']);
+Route::get('/searchByType/{type}', [ProductController::class, 'searchByType']);
+Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
+
+
+
+Route::post('/addcomment',[CommentController::class, 'AddComment']);
+Route::get('/view_comments/{Product_id}', [CommentController::class, 'ProductComments']);
 
 
 
