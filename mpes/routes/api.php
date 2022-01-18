@@ -28,11 +28,13 @@ Route::get('/getProducts', [ProductController::class, 'getProducts']);
 Route::get('/searchByName/{product_name}', [ProductController::class, 'searchByName']);
 Route::get('/searchByExpiry_date/{expiry_date}', [ProductController::class, 'searchByExpiry_date']);
 Route::get('/sortingByType/{type}', [ProductController::class, 'sortingByType']);
-Route::get('/showDetails/{id}', [ProductController::class, 'show']);//////dosent exisit
+Route::get('/showDetails/{id}', [ProductController::class, 'show']);
 Route::post('/addLike/{id}', [ProductController::class, 'addLike']);
 Route::get('/sortingByCategory/{category_id}', [ProductController::class, 'sortingByCategory']);
 Route::get('/searchByType/{type}', [ProductController::class, 'searchByType']);
 Route::delete('/destroy/{id}', [ProductController::class, 'destroy']);
+
+Route::post('/malaz', "ProductController@malaz");
 
 
 

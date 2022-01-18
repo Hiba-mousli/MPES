@@ -81,19 +81,15 @@ class ProductController extends Controller
            return  $product;//->load(['user']);
     }
 
-    public function addProduct(Request $request)
+
+    
+    public function addproduct(Request $request)
     {
         # Done.....
-
-        $file = $request->file('image');
-        $format = $request->image->extension();
-        $path = $request->image->store('images');
-        $name = $file->getClientOriginalName();
 
         $validator = Validator::make($request->all(), [
             'product_name'=>['string'],
             'expiry_date'=>['required'],
-            'discount_value'=>['required'],
             'image'=>['required','string'],
             'type'=>['required','string'],
             'num_likes'=>['required','numeric'],
@@ -136,6 +132,51 @@ class ProductController extends Controller
         return ['status'=>'Product created successfully.'];
 
     }
+
+
+    // public function addProduct(Request $request)
+    // {
+    //     # Done.....
+    //   //  return response($request->get('image'));
+    //     $validator = Validator::make($request->all(), [
+    //         'product_name'=>['string'],
+    //         'expiry_date'=>['required'],
+    //         'image'=>['required','string'],
+    //         'type'=>['required','string'],
+    //         'num_likes'=>['required','numeric'],
+    //         'price'=>['required','numeric'],
+    //         'amount_products'=>['required','numeric'],
+    //         'user_id'=>['required','numeric'],
+    //         'category_id'=>['required','numeric'],
+    //     ]);
+    //     if($validator->fails()){
+    //         return $validator->errors()->all();
+    //     }
+    //     $product = Product::query()->create([
+    //         'product_name' => $request->get('json')['product_name'],
+    //         'expiry_date' => $request->expiry_date,
+    //         'discount_value' => $request->discount_value,
+    //         'image' => $request->image,
+    //         'type' => $request->type,
+    //         'num_likes' => $request->num_likes,
+    //         'price' => $request->price,
+    //         'amount_products' => $request->amount_products,
+    //         'user_id' => $request->user_id,
+    //         'category_id' => $request->category_id,
+    //          $image =  $request->file("img")->get()
+    //     ]);
+    //     // $imagePath = public_path()."//images";
+    //     // $image->move($imagePath,$image->getClientOrginalExtension);
+    //     foreach ($request->discounts as $discount){
+    //         $product->discounts()->create([
+    //             'name' => $discount['name'],
+    //             'discount' => $discount['discount'],
+    //             'discount_date' => $discount['discount_date'],
+    //        ]);
+    //      }
+    //     if($product->save())
+    //     return ['status'=>'Product created successfully.'];
+    // }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function searchByName(string $product_name)
     {
@@ -209,6 +250,15 @@ class ProductController extends Controller
          $product=product::query()->with(['user'])->get();
          return $product;
 
+    }
+
+
+
+
+    public function malaz(){
+
+
+        return response('mmmm');
     }
 
 

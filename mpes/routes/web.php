@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/logout',[UserController::class, 'Logout']);
+//Route::post('/addproduct',[ProductController::class, 'addProduct']);
